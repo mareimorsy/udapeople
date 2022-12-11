@@ -189,7 +189,7 @@ jobs:
     steps:
       - checkout
       - add_ssh_keys:
-          fingerprints: ["54:03:09:2e:fd:b3:04:d1:99:84:99:a1:fd:4a:41:06"]
+          fingerprints: ["45:61:62:29:92:90:5b:99:95:a4:b1:71:77:7f:92:34"]
       # - run:
       #     name: "Install Dependencies"
       #     command: |
@@ -253,7 +253,7 @@ jobs:
     steps:
       - checkout
       - add_ssh_keys:
-          fingerprints: ["54:03:09:2e:fd:b3:04:d1:99:84:99:a1:fd:4a:41:06"]
+          fingerprints: ["45:61:62:29:92:90:5b:99:95:a4:b1:71:77:7f:92:34"]
       - run:
           name: Deploy backend
           command: |
@@ -340,18 +340,18 @@ jobs:
 workflows:
   default:
     jobs:
-      - build-frontend
-      - build-backend
-      - test-frontend:
-          requires: [build-frontend]
-      - test-backend:
-          requires: [build-backend]
-      - scan-backend:
-          requires: [build-backend]
-      - scan-frontend:
-          requires: [build-frontend]
+      # - build-frontend
+      # - build-backend
+      # - test-frontend:
+      #     requires: [build-frontend]
+      # - test-backend:
+      #     requires: [build-backend]
+      # - scan-backend:
+      #     requires: [build-backend]
+      # - scan-frontend:
+      #     requires: [build-frontend]
       - deploy-infrastructure:
-          requires: [test-frontend, test-backend, scan-frontend, scan-backend]
+          # requires: [test-frontend, test-backend, scan-frontend, scan-backend]
           filters:
             branches: 
               only: [main]
@@ -359,13 +359,13 @@ workflows:
           requires: [deploy-infrastructure]
       - run-migrations:
           requires: [configure-infrastructure]
-      - deploy-frontend:
-          requires: [run-migrations]
+      # - deploy-frontend:
+      #     requires: [run-migrations]
       - deploy-backend:
           requires: [run-migrations]
-      - smoke-test:
-          requires: [deploy-backend, deploy-frontend]
-      - cloudfront-update:
-          requires: [smoke-test]
-      - cleanup:
-          requires: [cloudfront-update]
+      # - smoke-test:
+      #     requires: [deploy-backend, deploy-frontend]
+      # - cloudfront-update:
+      #     requires: [smoke-test]
+      # - cleanup:
+      #     requires: [cloudfront-update]
