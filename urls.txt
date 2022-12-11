@@ -1,0 +1,8 @@
+1. Public Url to GitHub repository (not private) [URL01]
+    https://github.com/mareimorsy/udacity-cloud-devops-final-project
+
+2. Public URL for your S3 Bucket (aka, your green candidate front-end) [URL02]
+    http://udapeople-0cb4f.s3-website-us-east-1.amazonaws.com/#/employees
+
+3. deployed and functioning front-end application in CloudFront. [URL03_SCREENSHOT]
+    http://d2y9b8eahntmx0.cloudfront.net/#/employees

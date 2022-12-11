@@ -1,0 +1,19 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "We are archiving this repository because we do not want learners to push personal development to the current repository. If you have any issues or suggestions to make, feel free to: - Utilize the https://knowledge.udacity.com/ forum to seek help on content-specific issues. - [Submit a support ticket](https://udacity.zendesk.com/hc/en-us/requests/new) along with the link to your forked repository.  - If you are an enterprise learner, please [Submit a support ticket here](https://udacityenterprise.zendesk.com/hc/en-us/requests/new?ticket_form_id=360000279131)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mareimorsy/udacity-cloud-devops-final-project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mareimorsy/udacity-cloud-devops-final-project/issues"
+  },
+  "homepage": "https://github.com/mareimorsy/udacity-cloud-devops-final-project#readme"
+}

@@ -1,0 +1,34 @@
+- name: Create Backend Directory
+  file:
+    path: /home/ubuntu/backend
+    state: directory
+
+- copy:
+    src: ~/project/.circleci/ansible/roles/deploy/artifact.tar.gz
+    dest: /home/ubuntu/backend
+
+- name: Extract artifact.tar.gz to EC2 
+  unarchive:
+    src: artifact.tar.gz
+    dest: /home/ubuntu/backend
+
+- name: "Installing Node Dependencies"
+  shell: |
+    cd /home/ubuntu/backend
+    npm i
+- name: Start the app
+  shell: |
+    export TYPEORM_ENTITIES=./backend/dist/modules/domain/**/*.entity{.ts,.js}
+    export TYPEORM_HOST=localhost
+    export TYPEORM_PORT=5532
+    export TYPEORM_USERNAME=postgres
+    export TYPEORM_PASSWORD=password
+    export TYPEORM_DATABASE=glee
+    export TYPEORM_MIGRATIONS_DIR=./backend/dist/migrations
+    export TYPEORM_MIGRATIONS=./backend/dist/migrations/*.ts
+    pm2 stop default
+    pm2 start -f /home/ubuntu/backend/dist/main.js
+# - name: Enable pm2
+#   become: true
+#   shell: |
+#     sudo su -c "env PATH=$PATH:/usr/local/bin pm2 startup systemd -u ubuntu --hp /home/ubuntu"
