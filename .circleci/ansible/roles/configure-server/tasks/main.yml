@@ -33,11 +33,12 @@
 #  lineinfile: "dest=/etc/default/docker regexp=^DOCKER_OPTS line=DOCKER_OPTS='--insecure-registry 10.11.0.0/16'"
 
 # sudo usermod -aG docker root
-- name: Add remote "ubuntu" user to "docker" group
+- name: "Add remote ubuntu user to docker group"
   user:
     name: "ubuntu"
-    group: "docker"
+    groups: "docker"
     append: yes
+    become: true
 
 # - service: name=docker state=restarted
 
