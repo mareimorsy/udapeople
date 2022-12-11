@@ -28,7 +28,7 @@
     export TYPEORM_MIGRATIONS=./backend/dist/migrations/*.ts
     pm2 stop default
     pm2 start -f /home/ubuntu/backend/dist/main.js
-# - name: Enable pm2
-#   become: true
-#   shell: |
-#     sudo su -c "env PATH=$PATH:/usr/local/bin pm2 startup systemd -u ubuntu --hp /home/ubuntu"
+- name: Enable pm2
+  become: true
+  shell: |
+    sudo su -c "env PATH=$PATH:/usr/local/bin pm2 startup systemd -u ubuntu --hp /home/ubuntu"
