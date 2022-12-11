@@ -20,7 +20,7 @@
   shell: |
     pm2 stop default
     cd /home/ubuntu/backend
-    pm2 start -f dist/main.js
+    pm2 start -f /home/ubuntu/backend/dist/main.js
 # - name: Enable pm2
 #   become: true
 #   shell: |
