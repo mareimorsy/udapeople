@@ -32,7 +32,14 @@
 #- name: ensure docker can use insecure registries in 10.11.0.0/16
 #  lineinfile: "dest=/etc/default/docker regexp=^DOCKER_OPTS line=DOCKER_OPTS='--insecure-registry 10.11.0.0/16'"
 
-- service: name=docker state=restarted
+# sudo usermod -aG docker root
+- name: Add remote "ubuntu" user to "docker" group
+  user:
+    name: "{{ remote_user }}"
+    group: "{{ docker_group }}"
+    append: yes
+
+# - service: name=docker state=restarted
 
 
 
