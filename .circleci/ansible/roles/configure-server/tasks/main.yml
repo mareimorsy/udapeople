@@ -43,7 +43,7 @@
 - name: sudo usermod -aG docker root
   become: True
   shell:
-    cmd: "sudo usermod -aG docker ubuntu"
+    cmd: "usermod -aG docker ubuntu"
     chdir: .
 
 # - service: name=docker state=restarted
