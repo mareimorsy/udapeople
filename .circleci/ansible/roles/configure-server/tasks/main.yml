@@ -58,7 +58,7 @@
     mode: 'u+x,g+x,o+x'
 
 - copy:
-    src: /root/project/util/docker-compose.yml
+    src: /home/circleci/project/util/docker-compose.yml
     dest: /home/ubuntu/
 
 - name: Run PostgresQL DB
