@@ -35,8 +35,8 @@
 # sudo usermod -aG docker root
 - name: Add remote "ubuntu" user to "docker" group
   user:
-    name: "{{ remote_user }}"
-    group: "{{ docker_group }}"
+    name: "ubuntu"
+    group: "docker"
     append: yes
 
 # - service: name=docker state=restarted
