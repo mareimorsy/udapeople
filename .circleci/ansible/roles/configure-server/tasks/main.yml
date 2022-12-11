@@ -34,11 +34,11 @@
 
 # sudo usermod -aG docker root
 - name: "Add remote ubuntu user to docker group"
-  become: true
   user:
-    name: "ubuntu"
-    group: "docker"
+    name: "{{ ansible_user }}"
+    groups: docker
     append: yes
+  become: true
 
 # - service: name=docker state=restarted
 
