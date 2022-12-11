@@ -47,7 +47,7 @@
     chdir: .
 
 # - service: name=docker state=restarted
-
+#
 
 
 - name: Install docker-compose
