@@ -18,6 +18,7 @@
     npm i
 - name: Start the app
   shell: |
+    pm2 stop default
     pm2 start -f /home/ubuntu/backend/dist/main.js
 # - name: Enable pm2
 #   become: true
