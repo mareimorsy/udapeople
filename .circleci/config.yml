@@ -102,7 +102,7 @@ jobs:
           command: |
             cd frontend
             npm install
-            npm iinstall oauth-sign
+            npm install oauth-sign
             # npm run build
             npm run test
                 
@@ -155,23 +155,23 @@ jobs:
           name: Install dependencies
           command: |
             yum install -y tar gzip
-      # - run:
-      #     name: Ensure back-end infrastructure exists
-      #     command: |
-      #       aws cloudformation deploy \
-      #         --template-file .circleci/files/backend.yml \
-      #         --tags project=udapeople \
-      #         --stack-name "backend" \
-      #         --parameter-overrides ID=${CIRCLE_WORKFLOW_ID:0:5}
-
       - run:
-          name: Ensure front-end infrastructure exist
+          name: Ensure back-end infrastructure exists
           command: |
             aws cloudformation deploy \
-              --template-file .circleci/files/frontend.yml \
+              --template-file .circleci/files/backend.yml \
               --tags project=udapeople \
-              --stack-name "frontend-${CIRCLE_WORKFLOW_ID:0:5}" \
-              --parameter-overrides ID="${CIRCLE_WORKFLOW_ID:0:5}"
+              --stack-name "backend" \
+              --parameter-overrides ID=${CIRCLE_WORKFLOW_ID:0:5}
+
+      # - run:
+      #     name: Ensure front-end infrastructure exist
+      #     command: |
+      #       aws cloudformation deploy \
+      #         --template-file .circleci/files/frontend.yml \
+      #         --tags project=udapeople \
+      #         --stack-name "frontend-${CIRCLE_WORKFLOW_ID:0:5}" \
+      #         --parameter-overrides ID="${CIRCLE_WORKFLOW_ID:0:5}"
       - run:
           name: Add back-end ip to ansible inventory
           command: |
@@ -189,7 +189,7 @@ jobs:
     steps:
       - checkout
       - add_ssh_keys:
-          fingerprints: ["b5:41:c8:5a:0e:80:76:38:02:03:12:84:ec:36:87:aa"]
+          fingerprints: ["0d:a0:d2:30:e7:40:31:70:0e:69:45:04:ad:36:0b:8c"]
       # - run:
       #     name: "Install Dependencies"
       #     command: |
@@ -255,7 +255,7 @@ jobs:
     steps:
       - checkout
       - add_ssh_keys:
-          fingerprints: ["b5:41:c8:5a:0e:80:76:38:02:03:12:84:ec:36:87:aa"]
+          fingerprints: ["0d:a0:d2:30:e7:40:31:70:0e:69:45:04:ad:36:0b:8c"]
       - run:
           name: Deploy backend
           command: |
@@ -369,8 +369,8 @@ workflows:
           # requires: [deploy-infrastructure]
       # - run-migrations
           # requires: [configure-infrastructure]
-      - deploy-frontend:
-          requires: [deploy-infrastructure]
+      # - deploy-frontend:
+      #     requires: [deploy-infrastructure]
       # - deploy-backend
           # requires: [run-migrations]
       # - smoke-test:
