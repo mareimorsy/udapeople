@@ -1,8 +1,17 @@
 - name: "install node exporter."
+  become: True
   unarchive:
     src: https://github.com/prometheus/node_exporter/releases/download/v0.17.0/node_exporter-0.17.0.linux-amd64.tar.gz
     dest: /tmp
     remote_src: yes
+
+# - name: "Download node exproter"
+#   become: True
+#   shell:
+#     cmd: "docker-compose -f docker-compose.yml up -d"
+#     chdir: .
+#   shell: |
+#     "wget https://github.com/prometheus/node_exporter/releases/download/v0.17.0/node_exporter-0.17.0.linux-amd64.tar.gz"
 
 # - name: "move binary to /usr/local/bin."
 #   become: true
