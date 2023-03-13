@@ -15,7 +15,7 @@
 - name: "move node exproter"
   become: True
   shell:
-    cmd: "sudo mkdir -p /tmp; sudo mv node_exporter-0.17.0.linux-amd64.tar.gz /tmp"
+    cmd: "ls"
 # - name: "move binary to /usr/local/bin."
 #   become: true
 #   copy:
