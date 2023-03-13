@@ -1,0 +1,52 @@
+---
+
+- name: "node exporter play." 
+  hosts: web
+  user: ubuntu
+  become: true
+  become_method: sudo
+  gather_facts: false
+  vars:
+    - ansible_python_interpreter: /usr/bin/python3
+    - ansible_host_key_checking: false
+    - ansible_stdout_callback: yaml
+
+
+  pre_tasks:
+    # - name: "wait 600 seconds for target connection to become reachable/usable."
+    #   wait_for_connection:
+
+    - name: "install python for Ansible."
+      become: true
+      apt:
+        name: python3
+        state: latest
+  tasks:
+    - name: "install node exporter."
+      become: True
+      unarchive:
+        src: https://github.com/prometheus/node_exporter/releases/download/v0.17.0/node_exporter-0.17.0.linux-amd64.tar.gz
+        dest: /tmp
+        remote_src: yes
+
+    - name: "move binary to /usr/local/bin."
+      become: true
+      copy:
+        src: /tmp/node_exporter-0.17.0.linux-amd64/node_exporter
+        dest: /usr/local/bin/node_exporter
+        remote_src: yes
+        mode: '0777'
+        
+    - name: "add node exporter configuration."
+      become: true
+      copy:
+        src: node_exporter.service
+        dest: /etc/systemd/system/
+
+    - name: "enable node_exporter service"
+      become: true
+      systemd:
+        state: restarted
+        daemon_reload: yes
+        name: node_exporter
+        enabled: yes
